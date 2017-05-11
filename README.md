@@ -11,7 +11,7 @@ Once the B-Tree concepts are more or less understood, you can switch to the bplt
 
 My sample contains five fields:
 <ol>
- <li>first-name (can be empty)</li>@
+ <li>first-name (can be empty)</li>
  <li>surname</li>
  <li>'Actor', 'Director', or 'Director and Actor'. Note that 'Actor' is gender-neutral here! (the gender isn't stored in my database)</li>
  <li>birth year</li>
@@ -36,7 +36,7 @@ A few examples will show what you can do - I assume the index created as suggest
   <li><strong>scan John:Wayne</strong>  Ditto, but by scanning the file; with <strong>scan</strong> values have to be provided either in the same order as in the file, or by specifing their position with <strong>@</strong> followed by a field #, eg <strong>scan Wayne@2:John@1</strong></li>
   <li><strong>get Ford</strong> Retrieve all information about people with the surname "Ford"; you can show that <strong>get John</strong> doesn't work, but that <strong>scan John</strong> does</li>
   <li><strong>get ,Aykroyd</strong> Retrieve all people with a name smaller than"Aykroyd"; <strong>scan ,Aykroyd@2</strong> does the same by scanning</li>
-   <li><strong>get Le,Lu</strong> (resp <strong>scan Le@2,Lu</strong>) Retrieve all people with a name greater than "Le" and smaller (or equal too) "Luzzzzzzzz"; note that the filed position must be specified only once per key with <strong>scan</strong><li>
+   <li><strong>get Le,Lu</strong> (resp <strong>scan Le@2,Lu</strong>) Retrieve all people with a name greater than "Le" and smaller (or equal too) "Luzzzzzzzz"; note that the field position must be specified only once per key with <strong>scan</strong></li>
 </ul>
 
 You can point out that with range scans <strong>get</strong> always returns keys in alphabetical order, while <strong>scan</strong> returns them in the order in which they are stored in the file.
