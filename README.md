@@ -1,7 +1,7 @@
 # bpltree
 With the companion btree program, bpltree is intended at making students better understand indices in databases.
 
-The problem with explaining indices is that usually you have to explain B-trees in a theoretical and often abstract way, then you run a demo that is rarely convincing on a real database - rarely convincing because modern DBMS product scan tables very fast, especially when they are in memory, and because tables used during courses don't have the size of your average corporate table. Additionally, short of dumping index blocks, something you don't really want to do before beginners, there is no way to let students "see" how indices relate to data other than the CREATE INDEX statement.
+The problem with explaining indices is that usually you have to explain B-trees in a theoretical and often abstract way, then you run a demo that is rarely convincing on a real database - rarely convincing because modern DBMS products scan tables very fast, especially when they are in memory, and because tables used during courses don't have the size of your average corporate table. Additionally, short of dumping index blocks, something you don't really want to do before beginners, there is no way to let students "see" how indices relate to data other than the CREATE INDEX statement.
 
 Among the few things I have learned in a quarter of century of database consulting is the fact that young university graduates either ignore everything of indices, or believe that an index fixes magically all performance issues, and in the best of cases have no clue about composite indexes nor when an existing index cannot be used. These programs were written to help set the record straight.
 
