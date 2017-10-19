@@ -1,6 +1,6 @@
-#ifndef BTPLUS_HEADER
+#ifndef _BTPLUS_HEADER
 
-#define BTPLUS_HEADER
+#define _BTPLUS_HEADER
 
 #define BTPLUS_NOT_FOUND	-1
 #define BTPLUS_ADD	  0

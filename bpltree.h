@@ -16,7 +16,7 @@ struct node_t;
 typedef struct redirect_t {
             char          *key;
             struct node_t *bigger;
-                     // Pointer to the subpltree that contains
+                     // Pointer to the subtree that contains
                      // keys bigger than the current one
                      // and smaller than the key to the right
         } REDIRECT_T;

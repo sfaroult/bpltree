@@ -15,7 +15,7 @@
 #define MAX_FIELDS          32
 #define FIELD_DSC          3 * MAX_FIELDS
 #define KEY_MAXLEN         250
-#define OPTIONS      "s:xenqdk:f:" 
+#define OPTIONS      "hs:xenqdk:f:" 
 
 #define SHOW_NOTHING         0
 #define SHOW_TREE            1
@@ -114,7 +114,7 @@ static void  list_leaf(NODE_T *n) {
     short i;
 
     if (n && _is_leaf(n)) {
-      for (i = 1; i <= n->keycnt; i++) {
+      for (i = 0; i < n->keycnt; i++) {
         if (n->node.leaf.k[i].key) {
           if (bpltree_numeric()) {
             printf("(%d", *((int*)(n->node.leaf.k[i].key)));
@@ -258,6 +258,8 @@ static void usage(char *prog) {
    fprintf(stdout, "The text file is indexed if present.\n");
    fprintf(stdout, "  Flags:\n");
    fprintf(stdout,
+       "    -h           : show this help\n");
+   fprintf(stdout,
            "    -k <n>       : store at most <n> keys per node (default %d)\n",
            bpltree_maxkeys());
    fprintf(stdout,
@@ -333,7 +335,8 @@ int main(int argc, char **argv) {
           }
         }
         if (*p) {
-          printf("Invalid field specification - comma-separated list of numbers expected\n");
+          printf("Invalid field specification");
+          printf(" - comma-separated list of numbers expected\n");
           exit(1);
         }
         fields = strdup(optarg);
@@ -351,6 +354,7 @@ int main(int argc, char **argv) {
         }
         bpltree_setmaxkeys(maxkeys);
         break;
+      case 'h':
       case '?':
       default:
         usage(argv[0]);
@@ -373,9 +377,9 @@ int main(int argc, char **argv) {
         preloaded++;
         keypos = read_key(fp, fields);
       }
-    }
-  } else {
-    perror(fname);
+    } else {
+      perror(fname);
+    } 
   } 
   if (fields) {
     free(fields);
@@ -540,15 +544,19 @@ int main(int argc, char **argv) {
               printf("  or add <key>,<val>        : insert a (key,val) pair\n");
               printf(" rem <key> or del <key>     : remove a key\n");
               printf(" get <key>[,<key>]          : retrieve info using the index\n");
-              printf("                              ranges such as \",key\" or \"key,\" are supported");
-              printf("                              composite keys are supported");
-              printf(" gettime <key>[,<key>]      : retrieve info using the index but only show time taken\n");
+              printf("                              ranges such as \",key\" or \"key,\" are supported\n");
+              printf("                              composite keys are supported\n");
+              printf(" gettime <key>[,<key>]      : retrieve info using the index but\n");
+              printf("                              only show time taken\n");
               printf(" scan <key>[,<key>]         : retrieve info without using the index\n");
-              printf("                              ranges such as \",key\" or \"key,\" are supported");
-              printf("                              composite keys are supported");
-              printf("                              field position (value@field#) is supported");
-              printf(" scantime <key>[,<key>]     : retrieve info without using the index but only show time taken\n");
-              printf(" gettime <key>              : retrieve info using the index but only show time taken\n");
+              printf(" scan <key>[,<key>]         : retrieve info without using the index\n");
+              printf("                              ranges such as \",key\" or \"key,\" are supported\n");
+              printf("                              composite keys are supported\n");
+              printf("                              field position (value@field#) is supported\n");
+              printf(" scantime <key>[,<key>]     : retrieve info without using the index but\n");
+              printf("                              only show time taken\n");
+              printf(" gettime <key>              : retrieve info using the index but\n");
+              printf("                              only show time taken\n");
               printf(" find <key> or search <key> : display search path\n");
               printf(" id                         : display id next to node (default)\n");
               printf(" noid                       : suppress id next to node\n");
